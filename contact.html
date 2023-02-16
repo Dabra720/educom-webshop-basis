@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html>
-<header>
+<head>
 	<meta charset="UTF-8">
 	<title>Contact</title>
-</header>
+	<link rel="stylesheet" href="CSS/stylesheet.css">
+</head>
 <body>
 
-	<ul>
+	<ul class="navbar">
 		<li><a href="index.html">HOME</a></li>
 		<li><a href="about.html">ABOUT</a></li>
 		<li><a href="contact.html">CONTACT</a></li>
 	</ul>
-
-	<h1>Neem contact met ons op</h1>
-	<p>Contactgegevens</p>
 	
-	<form>
-		<label for="aanhef">Aanhef</label>
-		<select name="aanhef" id="dropdown">
-			<option value="dhr">Dhr.</option>
-			<option value="mvr">Mvr.</option>
-		</select>
-		<label for="naam">Naam</label>
-		<input type="text">
-		<label for="email">E-Mail</label>
-		<input type="text">
-		<label for="telefoon">Telefoonnummer</label>
-		<input type="text">
-		<label for="communicatie">Communicatievoorkeur</label>
-		<input type="radio" id="email" name="communicatie" value="Email">
-		<label for="email">Email</label>
-		<input type="radio" id="telefoon" name="communicatie" value="Telefoon">
-		<label for="telefoon">Telefoon</label>
-		<label for="message">Bericht</label>
-		<input type="textarea">
-		<input type="submit">
-	</form>
-
+	<div class="core">
+		<h1>Neem contact met ons op</h1>
+		<p>Contactgegevens</p>
+		
+		<form>
+			<label for="aanhef">Aanhef</label>
+			<select name="aanhef" id="dropdown">
+				<option value="dhr">Dhr.</option>
+				<option value="mvr">Mvr.</option>
+			</select>
+			<label for="naam">Naam</label>
+			<input type="text">
+			<label for="email">E-Mail</label>
+			<input type="text">
+			<label for="telefoon">Telefoonnummer</label>
+			<input type="text">
+			<label for="communicatie">Communicatievoorkeur</label>
+			<input type="radio" id="email" name="communicatie" value="Email">
+			<label for="email">Email</label>
+			<input type="radio" id="telefoon" name="communicatie" value="Telefoon">
+			<label for="telefoon">Telefoon</label>
+			<label for="message">Bericht</label>
+			<input type="textarea">
+			<input type="submit">
+		</form>
+	</div>
 </body>
 <footer>
 ©2023 Daan Braas

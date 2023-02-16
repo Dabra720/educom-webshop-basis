@@ -1,1 +1,38 @@
 /* Cascade Style Sheet for this website */
+body {
+	margin: 50px 0px 0px 0px;
+	background-color: lightblue;
+}
+
+h1 {
+	color: navy;
+	min-height: 48px;
+}
+ul.navbar{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: navy;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+ul.navbar li{
+	float: left;
+}
+ul.navbar li > a{
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+ul.navbar li > a:hover{
+	background-color: blue;
+}
+.core{
+	width: 800px;
+	margin: auto;
+}
