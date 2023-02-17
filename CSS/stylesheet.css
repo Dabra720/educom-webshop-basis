@@ -6,7 +6,11 @@ body {
 
 h1 {
 	color: navy;
-	min-height: 48px;
+	font-size: 48px;
+	text-align: center;
+}
+p{
+	font-size: 12px;
 }
 ul.navbar{
 	list-style-type: none;
@@ -35,5 +39,35 @@ ul.navbar li > a:hover{
 .core{
 	width: 800px;
 	margin: auto;
-	overflow: none;
+	overflow: auto;
+}
+.row{
+	display: inline-block;
+	width: 100%;
+}
+.col-25{
+	float: left;
+	width: 25%;
+	margin-top: 6px;
+}
+.col-75{
+	float: right;
+	width: 75%;
+	margin-top: 6px;
+}
+
+label{
+	font-size: 18px;
+}
+input[type=text], select, textarea{
+	width: 400px;
+}
+input[type=submit]{
+	float: right;
+}
+footer{
+	background-color: black;
+	color: white;
+	font-size: 10px;
+	text-align: right;
 }
