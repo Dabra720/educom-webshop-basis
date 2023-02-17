@@ -16,7 +16,8 @@
 	<div class="core">
 		<h1>Neem contact met ons op</h1>
 		<h2>Contactgegevens</h2>
-			<form>
+
+			<form action="validate.php" method="POST">
 				<div class="row">
 					<div class="col-25">
 						<label for="aanhef">Aanhef</label>
@@ -30,10 +31,10 @@
 				</div>
 				<div class="row">
 					<div class="col-25">
-						<label for="naam">Naam</label>
+						<label for="name">Naam</label>
 					</div>
 					<div class="col-75">
-						<input type="text" name="naam">
+						<input type="text" name="name">
 					</div>
 				</div>
 				<div class="row">
@@ -46,10 +47,10 @@
 				</div>
 				<div class="row">
 					<div class="col-25">
-						<label for="telefoon">Telefoonnummer</label>
+						<label for="phone">Telefoonnummer</label>
 					</div>
 					<div class="col-75">
-						<input type="text" name="telefoon">
+						<input type="text" name="phone">
 					</div>
 				</div>
 				<div class="row">
