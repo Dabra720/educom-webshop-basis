@@ -35,4 +35,5 @@ ul.navbar li > a:hover{
 .core{
 	width: 800px;
 	margin: auto;
+	overflow: none;
 }
