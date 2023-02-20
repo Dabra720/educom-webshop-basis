@@ -102,6 +102,6 @@ function test_input($data) {
 </body>
 
 <footer>
-©2023 Daan Braas
+&#169; 2023 Daan Braas
 </footer>
 </html>
