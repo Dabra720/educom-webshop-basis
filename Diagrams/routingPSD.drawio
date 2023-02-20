@@ -5,46 +5,58 @@
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="2" value="getRequestedPage" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="108" y="278" width="312" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="257.5" width="312" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="showResponsePage" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="108" y="318" width="312" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="297.5" width="312" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="showDocumentStart" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="108.5" y="410" width="260" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="495" width="312" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="showHeadSection" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="108.5" y="450" width="260" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="535" width="312" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="showBodySection" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="108.5" y="490" width="260" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="575" width="312" height="40.31" as="geometry"/>
                 </mxCell>
                 <mxCell id="7" value="showDocumentEnd" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="108.5" y="530" width="260" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="615.31" width="312" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="8" value="showBodyStart" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="108" y="620" width="260" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="710" width="312" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="showHeadSection" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="108" y="660" width="260" height="40" as="geometry"/>
+                <mxCell id="9" value="showHeader" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="750" width="312" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="showBodySection" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="108" y="700" width="260" height="40" as="geometry"/>
+                <mxCell id="10" value="showContent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="790" width="312" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="showDocumentEnd" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="108" y="740" width="260" height="40" as="geometry"/>
+                <mxCell id="11" value="showFooter" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="830" width="312" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="&amp;nbsp;GET&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;POST" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
-                    <mxGeometry x="108" y="77.5" width="635" height="140" as="geometry"/>
+                <mxCell id="16" value="PSD: getResponsePage" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="465" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="&lt;div style=&quot;&quot;&gt;Aanvraag komt binnen bij index.php&lt;/div&gt;" style="triangle;whiteSpace=wrap;html=1;rotation=90;align=center;verticalAlign=middle;horizontal=0;" vertex="1" parent="1">
-                    <mxGeometry x="357.07" y="-170" width="136.87" height="635" as="geometry"/>
+                <mxCell id="17" value="PSD: showBodySection" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="680" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="108.5" y="218" width="317" height="60" as="geometry"/>
+                <mxCell id="18" value="PSD: Top-level" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="227.5" width="90" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="425.5" y="218" width="317" height="60" as="geometry"/>
+                <mxCell id="19" value="&amp;nbsp;TRUE&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;FALSE" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="87.5" width="635" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="&lt;div style=&quot;&quot;&gt;$_SERVER[ &quot;REQUEST_METHOD&quot;] == &quot;GET&quot;&lt;/div&gt;" style="triangle;whiteSpace=wrap;html=1;rotation=90;align=center;verticalAlign=middle;horizontal=0;" vertex="1" parent="1">
+                    <mxGeometry x="349.07" y="-160" width="136.87" height="635" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="getRequestedPage" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="425" y="257.5" width="312" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="showResponsePage" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="425" y="297.5" width="312" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="showBodyEnd" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="870" width="312" height="40" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
