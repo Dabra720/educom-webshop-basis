@@ -39,7 +39,7 @@ ul.navbar li > a{
 ul.navbar li > a:hover{
 	background-color: blue;
 }
-.core{
+.content{
 	width: 800px;
 	margin: auto;
 	overflow: auto;
@@ -53,4 +53,5 @@ footer{
 	font-size: 10px;
 	text-align: right;
 	padding: 10px;
+	bottom: 0;
 }

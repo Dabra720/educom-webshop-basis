@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Contact</title>
-	<link rel="stylesheet" href="CSS/stylesheet.css">
-</head>
-<body>
 <?php
 // define variables and set to empty values
 $aanhefErr = $nameErr = $emailErr = $phoneErr = $voorkeurErr = $messageErr = "";
@@ -41,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	} else {
 		$voorkeur = test_input($_POST["voorkeur"]);
 	}
-	if(empty($_POST["voorkeur"])){
+	if(empty($_POST["message"])){
 		$messageErr = "Bericht is required";
 	} else {
   	$message = test_input($_POST["message"]);
@@ -55,7 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		alert($msg);
 	}
 } else {
-	$aanhef = $name = $email = $phone = $voorkeur = $message = "";
 }
 function alert($msg){
 	echo "<script type='text/javascript'>alert('$msg');</script>";
@@ -66,42 +57,30 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
-?>
-
-	<ul class="navbar">
-		<li><a href="index.html">HOME</a></li>
-		<li><a href="about.html">ABOUT</a></li>
-		<li><a href="contact.php">CONTACT</a></li>
-	</ul>
-	
-	<div class="core">
+echo '
+	<div class="content">
 		<h1>Neem contact met ons op</h1>
 		<h2>Contactgegevens</h2>
 		<span class="error">* required fields</span>
 			<form action="" method="POST">
-				Aanhef <select name="aanhef" id="dropdown">
-							<option value="dhr">Dhr.</option>
-							<option value="mvr">Mvr.</option>
-						</select>
+				Aanhef: <select name="aanhef" id="dropdown">
+					<option value="dhr">Dhr.</option>
+					<option value="mvr">Mvr.</option>
+				</select>
 				<br><br>
-				Naam <input type="text" name="name" value="<?php echo $name; ?>"><span class="error">* <?php echo $nameErr;?></span>
+				Naam: <input type="text" name="name" value="'.$name.'"><span class="error">* '.$nameErr.'</span>
 				<br><br>
-				E-Mail <input type="text" name="email" value="<?php echo $email; ?>"><span class="error">* <?php echo $emailErr;?></span>
+				E-Mail: <input type="text" name="email" value="'.$email.'"><span class="error">* '.$emailErr.'</span>
 				<br><br>
-				Telefoonnummer <input type="text" name="phone" value="<?php echo $phone; ?>"><span class="error">* <?php echo $phoneErr;?></span>
+				Telefoonnummer: <input type="text" name="phone" value="'.$phone.'"><span class="error">* '.$phoneErr.'</span>
 				<br><br>
-				Communicatievoorkeur 
-				<input type="radio" name="voorkeur" <?php if (isset($voorkeur) && $voorkeur=="Email") echo "checked";?> value="Email">Email
-				<input type="radio" name="voorkeur" <?php if (isset($voorkeur) && $voorkeur=="Telefoon") echo "checked";?> value="Telefoon">Telefoon <span class="error">* <?php echo $voorkeurErr;?></span>
+				Communicatievoorkeur: 
+				<input type="radio" name="voorkeur" ';?>. <?php if (isset($voorkeur) && $voorkeur=="Email") echo "checked";?>. <?php echo ' value="Email">Email
+				<input type="radio" name="voorkeur" ';?>. <?php if (isset($voorkeur) && $voorkeur=="Telefoon") echo "checked";?>. <?php echo ' value="Telefoon">Telefoon <span class="error">* '.$voorkeurErr.'</span>
 				<br><br>
-				Bericht <textarea name="message"><?php echo $message;?></textarea><span class="error">* <?php echo $messageErr;?></span>
+				Bericht: <textarea name="message">'.$message.'</textarea><span class="error">* '.$messageErr.'</span>
 				<br><br>
 				<input type="submit">
 			</form>
-	</div>
-</body>
-
-<footer>
-&#169; 2023 Daan Braas
-</footer>
-</html>
+	</div>';
+	?>
