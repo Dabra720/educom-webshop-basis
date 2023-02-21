@@ -57,6 +57,7 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
+function showContactContent(){
 echo '
 	<div class="content">
 		<h1>Neem contact met ons op</h1>
@@ -75,12 +76,13 @@ echo '
 				Telefoonnummer: <input type="text" name="phone" value="'.$phone.'"><span class="error">* '.$phoneErr.'</span>
 				<br><br>
 				Communicatievoorkeur: 
-				<input type="radio" name="voorkeur" ';?>. <?php if (isset($voorkeur) && $voorkeur=="Email") echo "checked";?>. <?php echo ' value="Email">Email
-				<input type="radio" name="voorkeur" ';?>. <?php if (isset($voorkeur) && $voorkeur=="Telefoon") echo "checked";?>. <?php echo ' value="Telefoon">Telefoon <span class="error">* '.$voorkeurErr.'</span>
+				<input type="radio" name="voorkeur" ';?> <?php if (isset($voorkeur) && $voorkeur=="Email") echo "checked";?> <?php echo ' value="Email">Email
+				<input type="radio" name="voorkeur" ';?> <?php if (isset($voorkeur) && $voorkeur=="Telefoon") echo "checked";?> <?php echo ' value="Telefoon">Telefoon <span class="error">* '.$voorkeurErr.'</span>
 				<br><br>
 				Bericht: <textarea name="message">'.$message.'</textarea><span class="error">* '.$messageErr.'</span>
 				<br><br>
 				<input type="submit">
 			</form>
 	</div>';
+}
 	?>

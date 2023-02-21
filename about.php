@@ -1,4 +1,5 @@
 <?php 
+function showAboutContent(){
 echo '
 	<div class="content">
 		<h1>Daan Braas</h1>
@@ -11,4 +12,5 @@ echo '
 			<li>Tricking</li>
 		<ul>
 	</div>';
+}
 ?>
