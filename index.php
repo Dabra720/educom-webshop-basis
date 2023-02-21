@@ -23,28 +23,20 @@ function showResponsePage($page){
   showDocumentEnd();
 }
 
-function getArrayVar($array, $key, $default='') 
+// function getArrayVar($array, $key, $default='') 
+// { 
+//    return isset($array[$key]) ? $array[$key] : $default; 
+// } 
+function getPostVar($key, $default='')
 { 
-   return isset($array[$key]) ? $array[$key] : $default; 
+  $value = filter_input(INPUT_POST, $key); 
+  return isset($value) ? $value : $default;
 } 
-//============================================== 
-function getPostVar($key, $default='') 
-{ 
-    return getArrayVal($_POST, $key, $default);
 
-    /* Or use the modern variant below, a better way than accessing super global "$_POST"
-  
-       see https://www.php.net/manual/en/function.filter-input.php 
-       for extra options 
-
-       $value = filter_input(INPUT_POST, $key); 
-        
-       return isset($value) ? $value : $default; 
-    */
-} 
 function getUrlVar($key, $default=''){
   return isset($_GET[$key]) ? $_GET[$key] : $default;
 }
+
 function showDocumentStart(){
   echo '<!DOCTYPE html>
         <html>';
@@ -89,7 +81,8 @@ function showContent($page){
       break;
     case "contact":
       require('contact.php');
-      showContactContent();
+      $data = validateContact();
+      showContactContent($data);
       break;
     default:
       pageNotFound();
@@ -98,8 +91,8 @@ function showContent($page){
 
 function showFooter(){
   echo '<footer>
-          &#169; 2023 Daan Braas
-        </footer>';
+  &#169; 2023 Daan Braas
+  </footer>';
 }
 
 function showDocumentEnd(){
@@ -109,6 +102,66 @@ function showDocumentEnd(){
 function pageNotFound(){
   echo '<div class="content">
   <h1>PAGE NOT FOUND 404</h1>
-</div>';
+  </div>';
 }
+
+function validateContact(){
+  $data = array('validForm'=> false, 'values'=> array(), 'errors'=> array());
+
+  if($_SERVER['REQUEST_METHOD']=='POST'){
+    $data = validateField($data, 'aanhef', 'aanhefValid');
+    $data = validateField($data, 'name', 'nameValid');
+    $data = validateField($data, 'email', 'emailValid');
+    $data = validateField($data, 'phone', 'phoneValid');
+    $data = validateField($data, 'voorkeur', 'voorkeurValid');
+    $data = validateField($data, 'message', 'messageValid');
+
+    if(empty($data['errors'])){
+      $data['validForm'] = true;
+    }
+  }
+
+  return $data;
+}
+
+function validateField($array, $value, $error){
+  switch($value){
+    case 'aanhef':
+      $array['values']['aanhef'] = test_input($_POST['aanhef']);
+      break;
+    case 'name':
+      if (empty($_POST['name'])) {
+        $array['errors']['name'] = 'Name is required';
+      } else {
+        $array['values']['name'] = test_input($_POST["name"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$array['values']['name'])) {
+          $array['errors']['name'] = "Only letters and white space allowed";
+        }
+      }
+      break;
+    case 'email':
+
+      break;
+    case 'phone':
+
+      break;
+    case 'voorkeur':
+
+      break;
+    case 'message':
+
+      break;
+    default:
+      
+  }
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
 ?>
