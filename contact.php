@@ -27,7 +27,7 @@ function showContactContent($data){
 
 function showContactForm($data){
 	echo '<span class="error">* required fields</span>
-	<form action="" method="POST">
+	<form action="index.php" method="POST">
 		Aanhef: <select name="aanhef" id="dropdown">
 			<option value="Dhr">Dhr.</option>
 			<option value="Mvr">Mvr.</option>
@@ -40,8 +40,8 @@ function showContactForm($data){
 		Telefoonnummer: <input type="text" name="phone" value="'.getArrayVar($data['values'], 'phone').'"><span class="error">* '.getArrayVar($data['errors'], 'phone').'</span>
 		<br><br>
 		Communicatievoorkeur: 
-		<input type="radio" name="voorkeur" ';?> <?php if (getArrayVar($data['values'], 'voorkeur')=="Email") echo "checked";?> <?php echo ' value="Email">Email
-		<input type="radio" name="voorkeur" ';?> <?php if (getArrayVar($data['values'], 'voorkeur')=="Telefoon") echo "checked";?> <?php echo ' value="Telefoon">Telefoon <span class="error">* '.getArrayVar($data['errors'], 'voorkeur').'</span>
+		<input type="radio" name="voorkeur" '; if (getArrayVar($data['values'], 'voorkeur')=="Email") echo "checked"; echo ' value="Email">Email
+		<input type="radio" name="voorkeur" '; if (getArrayVar($data['values'], 'voorkeur')=="Telefoon") echo "checked"; echo ' value="Telefoon">Telefoon <span class="error">* '.getArrayVar($data['errors'], 'voorkeur').'</span>
 		<br><br>
 		Bericht: <textarea name="message">'.getArrayVar($data['values'], 'message').'</textarea><span class="error">* '.getArrayVar($data['errors'], 'message').'</span>
 		<br><br>

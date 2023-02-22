@@ -64,8 +64,9 @@ function showHeader(){
 		<ul class="navbar">
 			<li><a href="index.php?page=home">HOME</a></li>
 			<li><a href="index.php?page=about">ABOUT</a></li>
-			<li><a href="index.php?page=contact">CONTACT</a></li>
-		</ul>
+			<li><a href="index.php?page=contact">CONTACT</a></li>';
+    
+		echo '</ul>
 	</header>';
 }
 
@@ -167,7 +168,7 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
-
+// Debug tool, om variabelen makkelijk te kunnen checken
 function debug_to_console($data) {
   $output = $data;
   if (is_array($output))

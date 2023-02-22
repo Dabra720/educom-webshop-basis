@@ -1,0 +1,8 @@
+[email]|[naam]|[wachtwoord]
+coach@man-kind.nl|Geert Weggemans|halt!
+dbraas@gmail.com|Daan Braas|test123
+dbraas@gmail.com|Daan Braas|test123
+dbraas@gmail.com|Daan Braas|test123
+dbraas@gmail.com|Daan Braas|test123
+dbraas@gmail.com|Daan Braas|test123
+dbraas@gmail.com|Daan Braas|test123
