@@ -127,30 +127,33 @@ function validateContact(){
 function validateField($array, $value, $check){
   switch($check){
     case 'isEmpty':
-      $array['values']['aanhef'] = test_input($_POST['aanhef']);
+      if(empty($_POST[$value])){
+        $array['errors'][$value] = $value . " is required";
+      } else {
+        $array['values'][$value] = test_input($_POST[$value]);
+      }
       break;
     case 'nameValid':
       if (empty($_POST[$value])) {
-        $nameErr = $value. " is required";
+        $array['errors'][$value] = $value. " is required";
       } else {
-        $name = test_input($_POST["name"]);
+        $array['values'][$value] = test_input($_POST[$value]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-          $nameErr = "Only letters and white space allowed";
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$array['values'][$value])) {
+          $array['errors'][$value] = "Only letters and white space allowed";
         }
       }
       break;
-    case 'email':
-
-      break;
-    case 'phone':
-
-      break;
-    case 'voorkeur':
-
-      break;
-    case 'message':
-
+    case 'emailValid':
+      if(empty($_POST[$value])){
+        $array['errors'][$value] = "Email is required";
+      } else {
+        $array['values'][$value] = test_input($_POST[$value]);
+        // check if e-mail address is well-formed
+        if (!filter_var($array['values'][$value], FILTER_VALIDATE_EMAIL)) {
+          $array['errors'][$value] = "Invalid ". $value ." format";
+        }
+      }
       break;
     default:
       

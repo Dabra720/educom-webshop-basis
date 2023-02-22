@@ -1,67 +1,4 @@
 <?php
-
-// define variables and set to empty values
-$aanhefErr = $nameErr = $emailErr = $phoneErr = $voorkeurErr = $messageErr = "";
-$aanhef = $name = $email = $phone = $voorkeur = $message = "";
-$valid = false;
-
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-// 	$aanhef = $_POST["aanhef"];
-// 	if (empty($_POST["name"])) {
-// 		$nameErr = "Name is required";
-// 	} else {
-//   	$name = test_input($_POST["name"]);
-// 		// check if name only contains letters and whitespace
-//     if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-//       $nameErr = "Only letters and white space allowed";
-//     }
-// 	}
-// 	if(empty($_POST["email"])){
-// 		$emailErr = "Email is required";
-// 	} else {
-// 		$email = test_input($_POST["email"]);
-// 		// check if e-mail address is well-formed
-//     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//       $emailErr = "Invalid email format";
-//     }
-// 	}
-//   if(empty($_POST["phone"])){
-// 		$phoneErr = "Telefoonnummer is required";
-// 	} else {
-// 		$phone = test_input($_POST["phone"]);
-// 	}
-// 	if(empty($_POST["voorkeur"])){
-// 		$voorkeurErr = "Communicatievoorkeur is required";
-// 	} else {
-// 		$voorkeur = test_input($_POST["voorkeur"]);
-// 	}
-// 	if(empty($_POST["message"])){
-// 		$messageErr = "Bericht is required";
-// 	} else {
-//   	$message = test_input($_POST["message"]);
-// 	}
-// 	if($aanhefErr===""&&$nameErr===""&&$emailErr===""&&$phoneErr===""&&$voorkeurErr===""&&$messageErr===""){
-// 		$valid = true;
-// 	}
-// // 	if($aanhefErr===""&&$nameErr===""&&$emailErr===""&&$phoneErr===""&&$voorkeurErr===""&&$messageErr===""){
-// // 		$msg = "Bedankt " . $aanhef . " " . $name . "." . "\\n";
-// // 		$msg .= "Emailadres: " . $email . "\\n";
-// // 		$msg .= "Telefoonnummer: " . $phone . "\\n";
-// // 		$msg .= "Communicatievoorkeur: " . $voorkeur . "\\n";
-// // 		$msg .= "Bericht: " . $message;
-// // 		alert($msg);
-// // 	}
-// // } else {
-// // }
-// // function alert($msg){
-// // 	echo "<script type='text/javascript'>alert('$msg');</script>";
-// }
-// function test_input($data) {
-//   $data = trim($data);
-//   $data = stripslashes($data);
-//   $data = htmlspecialchars($data);
-//   return $data;
-// }
 function getArrayVar($array, $key, $default='') 
 { 
    return isset($array[$key]) ? $array[$key] : $default; 
@@ -78,11 +15,13 @@ function showContactContent($data){
 		echo '</div>';
 				
 	} else {
+		echo "<div class='content'>";
 		echo "Beste " . getArrayVar($data['values'], 'aanhef') . " " . getArrayVar($data['values'], 'name') . ", dankjewel voor het posten!" . "<br>";
-		echo "Emailadres: " . $email . "<br>";
-		echo "Telefoonnummer: " . $phone . "<br>";
-		echo "Communicatievoorkeur: " . $voorkeur . "<br>";
-		echo "Bericht: " . $message . "<br>";
+		echo "Emailadres: " . getArrayVar($data['values'], 'email') . "<br>";
+		echo "Telefoonnummer: " . getArrayVar($data['values'], 'phone') . "<br>";
+		echo "Communicatievoorkeur: " . getArrayVar($data['values'], 'voorkeur') . "<br>";
+		echo "Bericht: " . getArrayVar($data['values'], 'message') . "<br>";
+		echo "</div>";
 	}
 }
 
@@ -90,8 +29,8 @@ function showContactForm($data){
 	echo '<span class="error">* required fields</span>
 	<form action="" method="POST">
 		Aanhef: <select name="aanhef" id="dropdown">
-			<option value="dhr">Dhr.</option>
-			<option value="mvr">Mvr.</option>
+			<option value="Dhr">Dhr.</option>
+			<option value="Mvr">Mvr.</option>
 		</select>
 		<br><br>
 		Naam: <input type="text" name="name" value="'.getArrayVar($data['values'], 'name').'"><span class="error">* '.getArrayVar($data['errors'], 'name').'</span>

@@ -40,6 +40,7 @@ ul.navbar li > a:hover{
 	background-color: blue;
 }
 .content{
+	min-height: 500px;
 	width: 800px;
 	margin: auto;
 	overflow: auto;
