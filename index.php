@@ -109,12 +109,12 @@ function validateContact(){
   $data = array('validForm'=> false, 'values'=> array(), 'errors'=> array());
 
   if($_SERVER['REQUEST_METHOD']=='POST'){
-    $data = validateField($data, 'aanhef', 'aanhefValid');
+    $data = validateField($data, 'aanhef', 'isEmpty');
     $data = validateField($data, 'name', 'nameValid');
     $data = validateField($data, 'email', 'emailValid');
-    $data = validateField($data, 'phone', 'phoneValid');
-    $data = validateField($data, 'voorkeur', 'voorkeurValid');
-    $data = validateField($data, 'message', 'messageValid');
+    $data = validateField($data, 'phone', 'isEmpty');
+    $data = validateField($data, 'voorkeur', 'isEmpty');
+    $data = validateField($data, 'message', 'isEmpty');
 
     if(empty($data['errors'])){
       $data['validForm'] = true;
@@ -124,19 +124,19 @@ function validateContact(){
   return $data;
 }
 
-function validateField($array, $value, $error){
-  switch($value){
-    case 'aanhef':
+function validateField($array, $value, $check){
+  switch($check){
+    case 'isEmpty':
       $array['values']['aanhef'] = test_input($_POST['aanhef']);
       break;
-    case 'name':
-      if (empty($_POST['name'])) {
-        $array['errors']['name'] = 'Name is required';
+    case 'nameValid':
+      if (empty($_POST[$value])) {
+        $nameErr = $value. " is required";
       } else {
-        $array['values']['name'] = test_input($_POST["name"]);
+        $name = test_input($_POST["name"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$array['values']['name'])) {
-          $array['errors']['name'] = "Only letters and white space allowed";
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+          $nameErr = "Only letters and white space allowed";
         }
       }
       break;
@@ -155,6 +155,7 @@ function validateField($array, $value, $error){
     default:
       
   }
+  return $array;
 }
 
 function test_input($data) {
@@ -162,6 +163,14 @@ function test_input($data) {
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
+}
+
+function debug_to_console($data) {
+  $output = $data;
+  if (is_array($output))
+      $output = implode(',', $output);
+
+  echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
 
 ?>
