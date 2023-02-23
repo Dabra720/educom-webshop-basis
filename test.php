@@ -2,7 +2,12 @@
 echo 'Inhoud van users.txt: ';
 $users_file = fopen('users/users.txt', 'a+') or die("Unable to open file!");
 
+$user_email = "dbraas@gmail.com";
+$user_name = "Daan Braas";
+$user_password = "test123";
+
 $new_user = "dbraas@gmail.com|Daan Braas|test123";
+
 fwrite($users_file, "\n" . $new_user);
 fclose($users_file);
 

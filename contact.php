@@ -1,27 +1,19 @@
 <?php
-function getArrayVar($array, $key, $default='') 
-{ 
-   return isset($array[$key]) ? $array[$key] : $default; 
-} 
+// require('index.php');
 
 function showContactContent($data){
 
 	if(!$data['validForm']){
-		echo '
-			<div class="content">
-				<h1>Neem contact met ons op</h1>
+		echo '<h1>Neem contact met ons op</h1>
 				<h2>Contactgegevens</h2>';
 				showContactForm($data);
-		echo '</div>';
 				
 	} else {
-		echo "<div class='content'>";
 		echo "Beste " . getArrayVar($data['values'], 'aanhef') . " " . getArrayVar($data['values'], 'name') . ", dankjewel voor het posten!" . "<br>";
 		echo "Emailadres: " . getArrayVar($data['values'], 'email') . "<br>";
 		echo "Telefoonnummer: " . getArrayVar($data['values'], 'phone') . "<br>";
 		echo "Communicatievoorkeur: " . getArrayVar($data['values'], 'voorkeur') . "<br>";
 		echo "Bericht: " . getArrayVar($data['values'], 'message') . "<br>";
-		echo "</div>";
 	}
 }
 

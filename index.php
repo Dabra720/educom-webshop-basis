@@ -23,10 +23,10 @@ function showResponsePage($page){
   showDocumentEnd();
 }
 
-// function getArrayVar($array, $key, $default='') 
-// { 
-//    return isset($array[$key]) ? $array[$key] : $default; 
-// } 
+function getArrayVar($array, $key, $default='') 
+{ 
+   return isset($array[$key]) ? $array[$key] : $default; 
+} 
 function getPostVar($key, $default='')
 { 
   $value = filter_input(INPUT_POST, $key); 
@@ -53,7 +53,9 @@ function showHeadSection($page){
 function showBodySection($page){
   echo '<body>';
   showHeader();
+  echo '<div class="content">';
   showContent($page);
+  echo '</div>';
   showFooter();
   echo '</body>';
 }
@@ -65,8 +67,8 @@ function showHeader(){
 			<li><a href="index.php?page=home">HOME</a></li>
 			<li><a href="index.php?page=about">ABOUT</a></li>
 			<li><a href="index.php?page=contact">CONTACT</a></li>';
-    
-		echo '</ul>
+  echo '<li><a href="index.php?page=register">REGISTER</a></li>';
+	echo '</ul>
 	</header>';
 }
 
@@ -84,6 +86,16 @@ function showContent($page){
       require('contact.php');
       $data = validateContact();
       showContactContent($data);
+      break;
+    case "register":
+      require('register.php');
+      $data = validateRegister();
+      showRegisterContent($data);
+      break;
+    case "login":
+      require('login.php');
+      $data = validateLogin();
+      showLoginContent();
       break;
     default:
       pageNotFound();
@@ -125,6 +137,27 @@ function validateContact(){
   return $data;
 }
 
+function validateRegister(){
+  $data = array('validForm'=> false, 'values'=> array(), 'errors'=> array());
+
+  if($_SERVER['REQUEST_METHOD']=='POST'){
+    $data = validateField($data, 'email', 'emailValid');
+    $data = validateField($data, 'name', 'nameValid');
+    $data = validateField($data, 'password', 'isEmpty');
+    $data = validateField($data, 'pass_rep', 'pass_rep');
+
+    if(empty($data['errors'])){
+      $data['validForm'] = true;
+    }
+  }
+
+  return $data;
+}
+
+function validateLogin(){
+  
+}
+
 function validateField($array, $value, $check){
   switch($check){
     case 'isEmpty':
@@ -156,8 +189,20 @@ function validateField($array, $value, $check){
         }
       }
       break;
-    default:
-      
+    case 'pass_rep':
+      if(empty($_POST[$value])){
+        $array['errors'][$value] = "Repeat the password";
+      } else {
+        if(!strcmp($_POST[$value], $array['values']['password'])){
+          $array['values'][$value] = $_POST[$value];
+        } else{
+          $array['errors'][$value] = "Passwords don't match";
+          $array['errors']['password'] = "Passwords don't match";
+          $array['values'][$value] = "";
+          $array['values']['password'] = "";
+        }
+      }
+      break;
   }
   return $array;
 }
