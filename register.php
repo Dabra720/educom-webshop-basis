@@ -7,10 +7,23 @@ function showRegisterContent($data){
     showRegisterForm($data);
   } else {
     // showResponsePage('login');
+    addNewUser($data);
     require('login.php');
     showLoginContent($data);
   }
-  
+}
+
+function addNewUser($data){
+  $users_file = fopen('users/users.txt', 'a+') or die("Unable to open file!");
+
+  $user_email = getArrayVar($data['values'], 'email');
+  $user_name = getArrayVar($data['values'], 'name');
+  $user_password = getArrayVar($data['values'], 'password');
+
+  $userArray = array($user_email, $user_name, $user_password);
+
+  fwrite($users_file, "\n" . implode("|", $userArray));
+  fclose($users_file);
 }
 
 function showRegisterForm($data){

@@ -68,6 +68,7 @@ function showHeader(){
 			<li><a href="index.php?page=about">ABOUT</a></li>
 			<li><a href="index.php?page=contact">CONTACT</a></li>';
   echo '<li><a href="index.php?page=register">REGISTER</a></li>';
+  echo '<li><a href="index.php?page=login">LOGIN</a></li>';
 	echo '</ul>
 	</header>';
 }
@@ -95,7 +96,7 @@ function showContent($page){
     case "login":
       require('login.php');
       $data = validateLogin();
-      showLoginContent();
+      showLoginContent($data);
       break;
     default:
       pageNotFound();
@@ -150,13 +151,13 @@ function validateRegister(){
       $data['validForm'] = true;
     }
   }
-
   return $data;
 }
 
-function validateLogin(){
+
+// function validateLogin(){
   
-}
+// }
 
 function validateField($array, $value, $check){
   switch($check){
@@ -219,7 +220,7 @@ function debug_to_console($data) {
   if (is_array($output))
       $output = implode(',', $output);
 
-  echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+  echo "<script>console.log('Debug Objects: " . $output . "');</script>";
 }
 
 ?>

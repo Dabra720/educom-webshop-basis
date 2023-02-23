@@ -1,18 +1,30 @@
 <?php
+// Debug tool, om variabelen makkelijk te kunnen checken
+function debug_to_console($data) {
+  $output = $data;
+  if (is_array($output))
+      $output = implode(',', $output);
+
+  echo "<script>console.log('Debug Objects: " . $output . "');</script>";
+}
+
 echo 'Inhoud van users.txt: ';
 $users_file = fopen('users/users.txt', 'a+') or die("Unable to open file!");
 
-$user_email = "dbraas@gmail.com";
-$user_name = "Daan Braas";
-$user_password = "test123";
+// $user_email = "dbraas@gmail.com";
+// $user_name = "Daan Braas";
+// $user_password = "test123";
+// $array = array($user_email, $user_name, $user_password);
 
-$new_user = "dbraas@gmail.com|Daan Braas|test123";
+// $new_user = implode("|", $array);
 
-fwrite($users_file, "\n" . $new_user);
-fclose($users_file);
+// fwrite($users_file, "\n" . $new_user);
+// fclose($users_file);
 
 $users_file = fopen('users/users.txt', 'r');
 while(!feof($users_file)){
+	$str = fgets($users_file);
+	debug_to_console("password: ". $str[0]."+" . $str[1]."+".$str[2]);
   echo fgets($users_file) . '<br>';
 }
 // echo fread($users_file, filesize('users/users.txt'));
