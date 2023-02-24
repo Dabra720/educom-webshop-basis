@@ -1,6 +1,15 @@
 <?php 
+session_start();
+
+require 'validation.php';
+require 'user_service.php';
+require 'session_manager.php';
+
+
 $page = getRequestedPage();
-showResponsePage($page);
+$data = processRequest($page);
+var_dump($data);
+showResponsePage($data);
 
 function getRequestedPage() 
 {     
@@ -16,25 +25,46 @@ function getRequestedPage()
    return $requested_page; 
 } 
 
-function showResponsePage($page){
-  showDocumentStart();
-  showHeadSection($page);
-  showBodySection($page);
-  showDocumentEnd();
+function processRequest($page){
+  switch ($page){
+    case 'login':
+      $data = validateLogin();
+      if($data['validForm']){
+        doLoginUser($data['name']);
+        $page = 'home';
+      }
+      break;
+    case 'logout':
+      doLogoutUser();
+      $page = 'home';
+      break;
+    case 'contact';
+      $data = validateContact();
+      if($data['validForm']){
+        $page = 'thanks';
+      }
+      break;
+    case 'register':
+      $data = validateRegister();
+      // debug_to_console($data['email']. $data['name']. $data['password']);
+      if($data['validForm']){
+        storeUser($data['values']['email'], $data['values']['name'], $data['values']['password']);
+        $page = 'login';
+      }
+      break;
+    default:
+      break;
+
+  }
+  $data['page'] = $page;
+  return $data;
 }
 
-function getArrayVar($array, $key, $default='') 
-{ 
-   return isset($array[$key]) ? $array[$key] : $default; 
-} 
-function getPostVar($key, $default='')
-{ 
-  $value = filter_input(INPUT_POST, $key); 
-  return isset($value) ? $value : $default;
-} 
-
-function getUrlVar($key, $default=''){
-  return isset($_GET[$key]) ? $_GET[$key] : $default;
+function showResponsePage($data){
+  showDocumentStart();
+  showHeadSection($data);
+  showBodySection($data);
+  showDocumentEnd();
 }
 
 function showDocumentStart(){
@@ -42,39 +72,44 @@ function showDocumentStart(){
         <html>';
 }
 
-function showHeadSection($page){
+function showHeadSection($data){
   echo '<head>
 	        <meta charset="UTF-8">
-	        <title>'. $page .'</title>
+	        <title>'. $data['page'] .'</title>
           <link rel="stylesheet" href="CSS/stylesheet.css">
         </head>';
 }
 
-function showBodySection($page){
+function showBodySection($data){
   echo '<body>';
-  showHeader();
+  showHeader($data);
   echo '<div class="content">';
-  showContent($page);
+  showContent($data);
   echo '</div>';
   showFooter();
   echo '</body>';
 }
 
-function showHeader(){
+function showHeader($data){
   echo '
   <header>
 		<ul class="navbar">
 			<li><a href="index.php?page=home">HOME</a></li>
 			<li><a href="index.php?page=about">ABOUT</a></li>
 			<li><a href="index.php?page=contact">CONTACT</a></li>';
-  echo '<li><a href="index.php?page=register">REGISTER</a></li>';
-  echo '<li><a href="index.php?page=login">LOGIN</a></li>';
+  if(!isUserLoggedIn()){
+    echo '<li><a href="index.php?page=register">REGISTER</a></li>';
+    echo '<li><a href="index.php?page=login">LOGIN</a></li>';
+  } else {
+    echo '<li><a href="index.php?page=logout">LOGOUT ' . $_SESSION['username'] . '</a></li>';
+  }
+  
 	echo '</ul>
 	</header>';
 }
 
-function showContent($page){
-  switch($page){
+function showContent($data){
+  switch($data['page']){
     case "home":
       require('home.php');
       showHomeContent();
@@ -85,22 +120,27 @@ function showContent($page){
       break;
     case "contact":
       require('contact.php');
-      $data = validateContact();
       showContactContent($data);
       break;
     case "register":
       require('register.php');
-      $data = validateRegister();
       showRegisterContent($data);
       break;
     case "login":
       require('login.php');
-      $data = validateLogin();
       showLoginContent($data);
       break;
+    case "thanks":
+      require 'contact.php';
+      showContactThanks($data);
     default:
       pageNotFound();
   }
+}
+
+function logOut()
+{
+    session_unset();
 }
 
 function showFooter(){
@@ -119,101 +159,21 @@ function pageNotFound(){
   </div>';
 }
 
-function validateContact(){
-  $data = array('validForm'=> false, 'values'=> array(), 'errors'=> array());
-
-  if($_SERVER['REQUEST_METHOD']=='POST'){
-    $data = validateField($data, 'aanhef', 'isEmpty');
-    $data = validateField($data, 'name', 'nameValid');
-    $data = validateField($data, 'email', 'emailValid');
-    $data = validateField($data, 'phone', 'isEmpty');
-    $data = validateField($data, 'voorkeur', 'isEmpty');
-    $data = validateField($data, 'message', 'isEmpty');
-
-    if(empty($data['errors'])){
-      $data['validForm'] = true;
-    }
-  }
-
-  return $data;
+function getArrayVar($array, $key, $default='') 
+{ 
+   return isset($array[$key]) ? $array[$key] : $default; 
 }
 
-function validateRegister(){
-  $data = array('validForm'=> false, 'values'=> array(), 'errors'=> array());
+function getPostVar($key, $default='')
+{ 
+  $value = filter_input(INPUT_POST, $key); 
+  return isset($value) ? $value : $default;
+} 
 
-  if($_SERVER['REQUEST_METHOD']=='POST'){
-    $data = validateField($data, 'email', 'emailValid');
-    $data = validateField($data, 'name', 'nameValid');
-    $data = validateField($data, 'password', 'isEmpty');
-    $data = validateField($data, 'pass_rep', 'pass_rep');
-
-    if(empty($data['errors'])){
-      $data['validForm'] = true;
-    }
-  }
-  return $data;
+function getUrlVar($key, $default=''){
+  return isset($_GET[$key]) ? $_GET[$key] : $default;
 }
 
-
-// function validateLogin(){
-  
-// }
-
-function validateField($array, $value, $check){
-  switch($check){
-    case 'isEmpty':
-      if(empty($_POST[$value])){
-        $array['errors'][$value] = $value . " is required";
-      } else {
-        $array['values'][$value] = test_input($_POST[$value]);
-      }
-      break;
-    case 'nameValid':
-      if (empty($_POST[$value])) {
-        $array['errors'][$value] = $value. " is required";
-      } else {
-        $array['values'][$value] = test_input($_POST[$value]);
-        // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$array['values'][$value])) {
-          $array['errors'][$value] = "Only letters and white space allowed";
-        }
-      }
-      break;
-    case 'emailValid':
-      if(empty($_POST[$value])){
-        $array['errors'][$value] = "Email is required";
-      } else {
-        $array['values'][$value] = test_input($_POST[$value]);
-        // check if e-mail address is well-formed
-        if (!filter_var($array['values'][$value], FILTER_VALIDATE_EMAIL)) {
-          $array['errors'][$value] = "Invalid ". $value ." format";
-        }
-      }
-      break;
-    case 'pass_rep':
-      if(empty($_POST[$value])){
-        $array['errors'][$value] = "Repeat the password";
-      } else {
-        if(!strcmp($_POST[$value], $array['values']['password'])){
-          $array['values'][$value] = $_POST[$value];
-        } else{
-          $array['errors'][$value] = "Passwords don't match";
-          $array['errors']['password'] = "Passwords don't match";
-          $array['values'][$value] = "";
-          $array['values']['password'] = "";
-        }
-      }
-      break;
-  }
-  return $array;
-}
-
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
 // Debug tool, om variabelen makkelijk te kunnen checken
 function debug_to_console($data) {
   $output = $data;
