@@ -1,20 +1,16 @@
 <?php
-// require('index.php');
 
 function showContactContent($data){
-
-	if(!$data['validForm']){
-		echo '<h1>Neem contact met ons op</h1>
-				<h2>Contactgegevens</h2>';
-				showContactForm($data);
-				
-	} else {
-		echo "Beste " . getArrayVar($data['values'], 'aanhef') . " " . getArrayVar($data['values'], 'name') . ", dankjewel voor het posten!" . "<br>";
-		echo "Emailadres: " . getArrayVar($data['values'], 'email') . "<br>";
-		echo "Telefoonnummer: " . getArrayVar($data['values'], 'phone') . "<br>";
-		echo "Communicatievoorkeur: " . getArrayVar($data['values'], 'voorkeur') . "<br>";
-		echo "Bericht: " . getArrayVar($data['values'], 'message') . "<br>";
-	}
+	echo '<h1>Neem contact met ons op</h1>
+	<h2>Contactgegevens</h2>';
+	showContactForm($data);
+}
+function showContactThanks($data){
+	echo "Beste " . getArrayVar($data['values'], 'aanhef') . " " . getArrayVar($data['values'], 'name') . ", dankjewel voor het posten!" . "<br>";
+	echo "Emailadres: " . getArrayVar($data['values'], 'email') . "<br>";
+	echo "Telefoonnummer: " . getArrayVar($data['values'], 'phone') . "<br>";
+	echo "Communicatievoorkeur: " . getArrayVar($data['values'], 'voorkeur') . "<br>";
+	echo "Bericht: " . getArrayVar($data['values'], 'message') . "<br>";
 }
 
 function showContactForm($data){

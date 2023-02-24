@@ -3,11 +3,13 @@ require 'file_repository.php';
 
 function authenticateUser($email, $password){
   $user = findUserByEmail($email);
-  if(empty($user)){
+  if(!empty($user)){
+    if(str_replace(array("\r", "\n"), '', $user[2])==$password){
+      return $user;
+    }
+  } else{
     return NULL;
   }
-
-  return $user;
 }
 
 function doesEmailExist($email){

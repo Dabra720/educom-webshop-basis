@@ -15,7 +15,6 @@ function validateContact(){
       $data['validForm'] = true;
     }
   }
-
   return $data;
 }
 
@@ -36,7 +35,6 @@ function validateRegister(){
         $data['validForm'] = true;
       }
     }
-    
   }
   return $data;
 }
@@ -44,14 +42,16 @@ function validateRegister(){
 // Valideer alle gegevens in het Loginform
 function validateLogin(){
   $data = array('validForm'=> false, 'values'=> array(), 'errors'=> array());
-
+  
   if($_SERVER['REQUEST_METHOD']=='POST'){
-    if(userAndPasswordMatch($_POST['email'])){
-      $_SESSION['username'] = $_POST['email'];
-      echo "Gefeliciteerd, u bent ingelogd";
-    } else {
+    $user = authenticateUser($_POST['email'], $_POST['password']);
+    if(is_null($user)){
       $data['errors']['email'] = "Email and/or password is wrong";
       $data['errors']['password'] = "Email and/or password is wrong";
+    } else{
+      $data['validForm'] = true;
+      $data['values']['name'] = $user[1];
+      doLoginUser($user[1]);
     }
   }
   return $data;
@@ -112,28 +112,4 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
-
-
-
-function userAndPasswordMatch($user){
-  $users = fopen("users/users.txt", "r");
-  if(!empty($user)){
-    while(!feof($users)){
-      $str = explode("|", fgets($users));
-      debug_to_console("email: " . $str[0]);
-      debug_to_console("password: " . str_replace(array("\r", "\n"), '', $str[2])); // Er kwam een error op breaklines
-      // debug_to_console("password: ". $str[0]."+" . $str[1]."+".$str[2]);
-      if($str[0]==$_POST['email']){
-        debug_to_console("Mail adres gevonden!");
-        if(str_replace(array("\r", "\n"), '', $str[2])==$_POST['password']){
-          return true;
-        }
-        break;
-      }
-    }
-  }
-  return false;
-}
-
-
 ?>

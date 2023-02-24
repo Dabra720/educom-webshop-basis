@@ -8,7 +8,7 @@ require 'session_manager.php';
 
 $page = getRequestedPage();
 $data = processRequest($page);
-var_dump($data);
+// var_dump($data);
 showResponsePage($data);
 
 function getRequestedPage() 
@@ -30,7 +30,7 @@ function processRequest($page){
     case 'login':
       $data = validateLogin();
       if($data['validForm']){
-        doLoginUser($data['name']);
+        doLoginUser($data['values']['name']);
         $page = 'home';
       }
       break;
@@ -46,7 +46,6 @@ function processRequest($page){
       break;
     case 'register':
       $data = validateRegister();
-      // debug_to_console($data['email']. $data['name']. $data['password']);
       if($data['validForm']){
         storeUser($data['values']['email'], $data['values']['name'], $data['values']['password']);
         $page = 'login';
@@ -67,19 +66,6 @@ function showResponsePage($data){
   showDocumentEnd();
 }
 
-function showDocumentStart(){
-  echo '<!DOCTYPE html>
-        <html>';
-}
-
-function showHeadSection($data){
-  echo '<head>
-	        <meta charset="UTF-8">
-	        <title>'. $data['page'] .'</title>
-          <link rel="stylesheet" href="CSS/stylesheet.css">
-        </head>';
-}
-
 function showBodySection($data){
   echo '<body>';
   showHeader($data);
@@ -88,24 +74,6 @@ function showBodySection($data){
   echo '</div>';
   showFooter();
   echo '</body>';
-}
-
-function showHeader($data){
-  echo '
-  <header>
-		<ul class="navbar">
-			<li><a href="index.php?page=home">HOME</a></li>
-			<li><a href="index.php?page=about">ABOUT</a></li>
-			<li><a href="index.php?page=contact">CONTACT</a></li>';
-  if(!isUserLoggedIn()){
-    echo '<li><a href="index.php?page=register">REGISTER</a></li>';
-    echo '<li><a href="index.php?page=login">LOGIN</a></li>';
-  } else {
-    echo '<li><a href="index.php?page=logout">LOGOUT ' . $_SESSION['username'] . '</a></li>';
-  }
-  
-	echo '</ul>
-	</header>';
 }
 
 function showContent($data){
@@ -133,14 +101,41 @@ function showContent($data){
     case "thanks":
       require 'contact.php';
       showContactThanks($data);
+      break;
     default:
       pageNotFound();
   }
 }
 
-function logOut()
-{
-    session_unset();
+function showDocumentStart(){
+  echo '<!DOCTYPE html>
+        <html>';
+}
+
+function showHeadSection($data){
+  echo '<head>
+	        <meta charset="UTF-8">
+	        <title>'. $data['page'] .'</title>
+          <link rel="stylesheet" href="CSS/stylesheet.css">
+        </head>';
+}
+
+function showHeader($data){
+  echo '
+  <header>
+		<ul class="navbar">
+			<li><a href="index.php?page=home">HOME</a></li>
+			<li><a href="index.php?page=about">ABOUT</a></li>
+			<li><a href="index.php?page=contact">CONTACT</a></li>';
+  if(!isUserLoggedIn()){
+    echo '<li><a href="index.php?page=register">REGISTER</a></li>';
+    echo '<li><a href="index.php?page=login">LOGIN</a></li>';
+  } else {
+    echo '<li><a href="index.php?page=logout">LOGOUT ' . $_SESSION['username'] . '</a></li>';
+  }
+  
+	echo '</ul>
+	</header>';
 }
 
 function showFooter(){
