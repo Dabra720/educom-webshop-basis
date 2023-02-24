@@ -3,3 +3,4 @@ coach@man-kind.nl|Geert Weggemans|halt!
 dbraas@gmail.com|Daan Braas|test123
 test@test.test|Test Test|test
 hallo@sponge.bob|Patrick|vierkant
+test@email.com|Daan Braas|test

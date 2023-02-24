@@ -28,7 +28,7 @@ function userAndPasswordMatch($user){
     while(!feof($users)){
       $str = explode("|", fgets($users));
       debug_to_console("email: " . $str[0]);
-      debug_to_console("password: " . str_replace(array("\r", "\n"), '', $str[2]));
+      debug_to_console("password: " . str_replace(array("\r", "\n"), '', $str[2])); // Er kwam een error op breaklines
       // debug_to_console("password: ". $str[0]."+" . $str[1]."+".$str[2]);
       if($str[0]==$_POST['email']){
         debug_to_console("Mail adres gevonden!");
