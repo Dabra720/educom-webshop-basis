@@ -55,8 +55,8 @@ function validateLogin(){
       $data['errors']['password'] = "Email and/or password is wrong";
     } else{
       $data['validForm'] = true;
-      $data['values']['name'] = $user[1];
-      doLoginUser($user[1]);
+      $data['values']['name'] = $user['name'];
+      doLoginUser($user['name']);
     }
   }
   return $data;
