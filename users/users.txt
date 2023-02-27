@@ -6,3 +6,4 @@ hallo@sponge.bob|Patrick|vierkant
 dirkbraas@gmail.com|Daan Braas|test
 Bing@chilling.com|Kim Cena|ching
 Bart.xart@live.nl|Bart|test
+j.bravo@strong.de|Johnny Bravo|bravo

@@ -5,6 +5,7 @@ function showContactContent($data){
 	<h2>Contactgegevens</h2>';
 	showContactForm($data);
 }
+
 function showContactThanks($data){
 	echo "Beste " . getArrayVar($data['values'], 'aanhef') . " " . getArrayVar($data['values'], 'name') . ", dankjewel voor het posten!" . "<br>";
 	echo "Emailadres: " . getArrayVar($data['values'], 'email') . "<br>";

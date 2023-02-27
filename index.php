@@ -51,9 +51,6 @@ function processRequest($page){
         $page = 'login';
       }
       break;
-    default:
-      break;
-
   }
   $data['page'] = $page;
   return $data;

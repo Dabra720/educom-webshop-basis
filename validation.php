@@ -28,13 +28,18 @@ function validateRegister(){
     $data = validateField($data, 'password', 'isEmpty');
     $data = validateField($data, 'pass_rep', 'pass_rep');
 
-    if(doesEmailExist($data['values']['email'])){
-      $data['errors']['email'] = "Already exists";
-    } else{
+    // debug_to_console($data['values']);
+    var_dump($data['values']);
+    if(!empty($data['values']['email'])){
+      if(doesEmailExist($data['values']['email'])){
+        $data['errors']['email'] = "Already exists";
+      } else{
       if(empty($data['errors'])){
         $data['validForm'] = true;
       }
+      }
     }
+    
   }
   return $data;
 }
